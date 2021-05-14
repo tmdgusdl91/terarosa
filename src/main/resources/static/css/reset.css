@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
+*{-webkit-text-size-adjust:none; box-sizing:border-box}
+html, body, div, span, applet, object, iframe,h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, s, samp,small, strike, strong, sub, sup, tt, var,b, u, i, center,dl, dt, dd, ol, ul, li,fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,time, mark, audio, video {margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline;}
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {display: block;}
+body, form, div, p, h1, h2, h3, h4, h5, h6, dl, dt, dd, ul, ol, li, fieldset, th, td, input, textarea,button,select{margin:0;padding:0;font-family:'Noto Sans KR','nanum', '³ª´® °íµñ', '¸¼Àº °íµñ','malgunGothic', 'dotum' ,'µ¸¿ò',sans-serif;font-weight:normal}
+body{-webkit-user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:rgba(0,0,0,0);width:100%;font-size:13px;color:#333;line-height:1.5; font-family: 'Noto Sans KR','nanum', '³ª´® °íµñ', '¸¼Àº °íµñ','malgunGothic', 'dotum' ,'µ¸¿ò',sans-serif;}
+a{color:#666;text-decoration:none;text-decoration:none; font-family:'Noto Sans KR','nanum', '³ª´® °íµñ', '¸¼Àº °íµñ','malgunGothic', 'dotum' ,'µ¸¿ò',sans-serif; font-size:13px; line-height:1.5; color:#666; width:100%; height:100%}
+li{list-style:none}
+a{text-decoration:none}
+a[href^="tel"]{ font-style:normal}
+address, caption, em, var{font-style:normal;font-weight:normal}
+input, textarea, select{letter-spacing:normal}
+ol, ul, dl{list-style:none}
+fieldset, img{border:0}
+legend, caption{display:none}
+img{border:0;vertical-align:top}
+img,fieldset{border:0;}
+li img,dd img,dt img,label img{vertical-align:top;}
+hr{display:none}
+table{border-collapse:collapse;border-spacing:0;width:100%;}
+br{letter-spacing:normal}
+p{letter-spacing:normal}
+input{vertical-align:middle}
+input[type="text"], input[type="password"]{-webkit-appearance:none}
+input[type="checkbox"]{-webkit-appearance:none;-webkit-border-radius:0}
+input:checked[type="checkbox"]{-webkit-appearance:checkbox}
+input[type="radio"]{border:none;-webkit-appearance:none}
+button,input[type="button"],input[type="submit"],input[type="reset"],input[type="file"]{-webkit-appearance:button;border-radius:0}
+textarea{-webkit-appearance:none}
+select{-webkit-appearance:menulist-text} 
+blockquote:before, blockquote:after,
+q:before, q:after {content: ''; content: none;}
+input,select,textarea,button{font-family:"nanum";font-size:14px;color:#333;}
+img,input,select{vertical-align:middle;}
+h1,h2,h3,h4,h5,h6{font-family:"nanum";font-size:13px;color:#333;}
+.hide {width:0; height:0; margin:0; padding:0; position:absolute; left:0; top:0;font-size:0; text-indent:-9999px; overflow:hidden; visibility:hidden}
+.cf:after {content:""; display:block; clear:both; visibility:hidden; width:0; height:0; font-size:0;}
