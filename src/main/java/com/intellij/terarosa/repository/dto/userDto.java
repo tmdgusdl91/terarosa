@@ -1,7 +1,7 @@
 package com.intellij.terarosa.repository.dto;
 
-import com.intellij.terarosa.common.SiGunGuCategory;
-import com.intellij.terarosa.common.SidoCategory;
+import com.intellij.terarosa.common.category.SiGunGuCategory;
+import com.intellij.terarosa.common.category.SidoCategory;
 import com.intellij.terarosa.domain.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,9 +16,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class userDto {
     private Long id;
-    private String userId;
-    private String userPw;
-    private String userName;
+    private String username;
+    private String password;
+    private String userNameKr;
     private String userPhone;
     private SidoCategory userAddr1;
     private SiGunGuCategory userAddr2;
@@ -28,8 +28,9 @@ public class userDto {
     public User toEntity() {
         User user = User.builder()
                 .id(id)
-                .userId(userId)
-                .userName(userName)
+                .username(username)
+                .password(password)
+                .userNameKr(userNameKr)
                 .userPhone(userPhone)
                 .userAddr1(userAddr1)
                 .userAddr2(userAddr2)

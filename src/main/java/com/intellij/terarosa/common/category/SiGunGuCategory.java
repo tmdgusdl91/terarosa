@@ -1,4 +1,4 @@
-package com.intellij.terarosa.common;
+package com.intellij.terarosa.common.category;
 
 public enum SiGunGuCategory {
 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/> -->
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>   
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/signin.css}" rel="stylesheet">
+</head>
+<body class="text-center">
+
+<main class="form-signin">
+    <form th:action="@{/account/signup}" method="post">
+        <img class="mb-4" th:src="@{/images/logo.png}" alt="logo.png">
+        <h1 class="h3 mb-3 fw-normal">Terarosa Sign up</h1>
+
+        <div class="form-floating">
+            <label for="username">Your Login ID</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Login ID" autofocus>
+            <input class="w-50 btn btn-lg btn-primary" type="button" value="중복확인" onClick="getAddr1();"/>
+        </div>
+
+        <div class="form-floating">
+            <label for="password">Your Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+
+        <div class="form-floating">
+            <label for="userNameKr">Your Name</label>
+            <input type="text" class="form-control" id="userNameKr" name="userNameKr" placeholder="Name">
+        </div>
+
+        <div class="form-floating">
+            <label for="userPhone">Your Phone number</label>
+            <input type="text" class="form-control" id="userPhone" name="userPhone" placeholder="'-'를 제외한 숫자 11자리" onkeypress="onlyNumber();">
+        </div>
+
+        <div class="form-floating">
+            <label for="userPhone">주소1</label>
+            <select class="select_type01 w170" th:name="userAddr1">
+                <option value="">시, 도를 선택해주세요.</option>
+                <option th:each="val : ${sido}" th:value="${val?.name}" th:utext="${val?.name}"></option>
+            </select>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
+        <p class="mt-5 mb-3 text-muted">&copy; Terarosa 2021</p>
+    </form>
+</main>
+
+
+
+</body>
+
+<script th:inline="javascript">
+    function getAddr1(){
+        $.ajax({
+			type: 'GET',
+			url:'/account/address',
+            dataType : 'json',
+			async: true, //동기, 비동기 여부
+			cache :false, // 캐시 여부
+			success: function(data){        
+                console.log("success");
+			},
+			error:function(xhr,status,error){
+				console.log('error:'+error);
+			}
+		});
+    }
+</script>
+<script>
+
+function onlyNumber(){
+        if((event.keyCode<48)||(event.keyCode>57))
+          event.returnValue=false;
+    }
+
+</script>
+</html>
