@@ -1,0 +1,96 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.83.1">
+  <title>Item register</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
+
+
+
+  <!-- Bootstrap core CSS -->
+  <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .container {
+       max-width: 960px;
+      }
+
+    </style>
+
+
+  <!-- Custom styles for this template -->
+</head>
+<body class="bg-light">
+
+<div class="container">
+  <main>
+    <div class="py-5 text-center">
+      <h2>Item Register</h2>
+    </div>
+
+    <div class="row g-5">
+
+
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3">Billing address</h4>
+        <form th:action="@{/account/item}" method="post">
+          <div class="row g-3">
+            <div class="col-sm-6">
+              <label class="form-label">Product name</label>
+              <input type="text" class="form-control" id="name" placeholder="" value="" required>
+
+            </div>
+
+            <div class="col-sm-6">
+              <label class="form-label">Category</label>
+              <input type="text" class="form-control" id="category" placeholder="" value="" required>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Price</label>
+              <div class="input-group has-validation">
+                <input type="text" class="form-control" id="price" placeholder="Price" required>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Product Information <span class="text-muted">(Optional)</span></label>
+              <textarea></textarea>
+            </div>
+
+
+
+          <button class="w-100 btn btn-primary btn-lg" type="submit">register</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+
+</div>
+
+
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="itemRegister.js"></script>
+</body>
+</html>
