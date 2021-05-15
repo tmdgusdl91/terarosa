@@ -33,9 +33,15 @@
         <h1 class="h3 mb-3 fw-normal">Terarosa Sign up</h1>
 
         <div class="form-floating">
+            <label for="userNameKr">타입</label><br/>
+            <label> <input type="radio" id="role" name="role" value="admin"> Admin </label>
+            <label> <input type="radio" id="role" name="role" value="user"> User </label>
+        </div>
+
+        <div class="form-floating">
             <label for="username">Your Login ID</label>
             <input type="text" class="form-control" id="username" name="username" placeholder="Login ID" autofocus>
-            <input class="w-50 btn btn-lg btn-primary" type="button" value="중복확인" onClick="getAddr1();"/>
+            <input class="w-50 btn btn-lg btn-primary" type="button" value="중복확인"/>
         </div>
 
         <div class="form-floating">
@@ -54,11 +60,22 @@
         </div>
 
         <div class="form-floating">
-            <label for="userPhone">주소1</label>
-            <select class="select_type01 w170" th:name="userAddr1">
-                <option value="">시, 도를 선택해주세요.</option>
-                <option th:each="val : ${sido}" th:value="${val?.name}" th:utext="${val?.name}"></option>
+            <label for="userPhone">주소1</label><br/>
+            <select class="select_type01 w170" th:name="userAddr1" id="address1">
+                <option value="">시, 도를 선택해주세요.</option>                
             </select>
+        </div>
+
+        <div class="form-floating">
+            <label for="userPhone">주소2</label><br/>
+            <select class="select_type01 w170" th:name="userAddr2" id="address2">
+                <option value="">시, 군, 구를 선택해주세요.</option>                
+            </select>
+        </div>
+
+        <div class="form-floating">
+            <label for="userNameKr">상세주소</label>
+            <input type="text" class="form-control" id="address3" th:name="userAddr3" placeholder="address">
         </div>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
@@ -70,25 +87,47 @@
 
 </body>
 
-<script th:inline="javascript">
-    function getAddr1(){
+<script>  
+    $.ajax({
+        type: 'GET',
+        url:'/account/addr/main',
+        dataType : 'json',
+        async: true, //동기, 비동기 여부
+        cache :false, // 캐시 여부
+        success: function(result){        
+            console.log("result", result);
+            $.each(result.data, function(name,value){
+                $('#address1').append('<option value="' + name + '">' + value + '</option>');
+            });
+        },
+        error:function(xhr,status,error){
+            console.log('error:'+error);
+        }
+    });
+
+    $("#address1").change(function(){
+        const value =  $(this).val();
+
         $.ajax({
-			type: 'GET',
-			url:'/account/address',
+            type: 'GET',
+            url:'/account/addr/sub',
+            data : {addr1 : value},
             dataType : 'json',
-			async: true, //동기, 비동기 여부
-			cache :false, // 캐시 여부
-			success: function(data){        
-                console.log("success");
-			},
-			error:function(xhr,status,error){
-				console.log('error:'+error);
-			}
-		});
-    }
+            async: true, //동기, 비동기 여부
+            cache :false, // 캐시 여부
+            success: function(result){   
+                $('#address2').children('option:not(:first)').remove();     
+                $.each(result.data, function(name,value){
+                    $('#address2').append('<option value="' + name + '">' + value + '</option>');
+                });
+            },
+            error:function(xhr,status,error){
+                console.log('error:'+error);
+            }
+        });
+    })
 </script>
 <script>
-
 function onlyNumber(){
         if((event.keyCode<48)||(event.keyCode>57))
           event.returnValue=false;
