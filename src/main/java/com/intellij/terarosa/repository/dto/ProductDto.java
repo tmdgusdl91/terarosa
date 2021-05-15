@@ -4,10 +4,7 @@ import com.intellij.terarosa.common.category.SiGunGuCategory;
 import com.intellij.terarosa.common.category.SidoCategory;
 import com.intellij.terarosa.domain.Product;
 import com.intellij.terarosa.domain.User;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -16,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @NoArgsConstructor
-public class productDTO {
+public class ProductDto {
 
     private Long id;
     private String name;
@@ -34,9 +31,15 @@ public class productDTO {
                 .category(category)
                 .price(price)
                 .info(info)
-                .count(count)
                 .build();
-
         return product;
+    }
+
+    @Builder
+    public ProductDto (String name, String category, String price, String info) {
+        this.name = name;
+        this.category = category;
+        this.price = BigInteger.valueOf(Long.parseLong(price));
+        this.info = info;
     }
 }

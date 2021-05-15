@@ -19,7 +19,6 @@
                 <img th:src="@{/images/logo.png}" alt="terarosa"/>
                 </a>
             </h1>
-            <form name="logout" th:action="@{/logout}" method="POST">
                 <div class="top-menu">
                     <ul>
                         <div sec:authorize="hasRole('admin')">
@@ -30,14 +29,20 @@
                         </div>
                         <li sec:authorize="!isAuthenticated()"><a href="/account/login" method="get">로그인</a></li>
                         <li sec:authorize="!isAuthenticated()"><a href="/account/signup" method="get">회원가입</a></li>
-                        <li sec:authorize="isAuthenticated()"><a href="#" onclick="javascript:document.logout.submit();">로그아웃</li>
+                        <form name="logout" th:action="@{/logout}" method="POST">
+                            <li sec:authorize="isAuthenticated()"><a href="#" onclick="javascript:document.logout.submit();">로그아웃</a></li>
+                        </form>
                         <!-- <li><span class="text-black mx-2" sec:authentication="name">사용자</span></li> -->
+                        <li><a href="#">주문/배송</a></li>
+                        <form name="product" th:action="@{/product/item}" method="GET">
+                                <li><input type="submit" value="상품등록"></li>
+<!--                            <li><a href="#" onclick="javascript:document.product.submit();">상품등록</a></li>-->
+                        </form>
                         <li><a href="#">주문/배송</a></li>
                         <li><a href="#">장바구니</a></li>
                         <li><a href="#">문의</a></li>
                     </ul>
                 </div>
-            </form>
             <nav id="nav">
                 <ul id="gnb">
                     <li class="hover-me"><a class='hover-me' href="<%=cp %>/tera/shoplist.do">SHOP</a></li>

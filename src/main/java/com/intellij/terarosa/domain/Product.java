@@ -4,6 +4,7 @@ package com.intellij.terarosa.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -12,6 +13,7 @@ import java.math.BigInteger;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
@@ -36,7 +38,7 @@ public class Product {
     @Column(length = 100)
     private String imgpath;
 
-    @Column(length = 1000)
+    @Column(columnDefinition = "integer default 0")
     private int count;
 
     @CreatedDate
@@ -44,14 +46,13 @@ public class Product {
     private LocalDateTime createDate;
 
     @Builder
-    public Product(Long id, String name, String category, BigInteger price, String info, String imgpath, int count) {
+    public Product(Long id, String name, String category, BigInteger price, String info, String imgpath) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.price = price;
         this.info = info;
         this.imgpath = imgpath;
-        this.count = count;
     }
 
 }
