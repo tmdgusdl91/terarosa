@@ -1,7 +1,8 @@
 package com.intellij.terarosa.domain;
 
-import com.intellij.terarosa.common.SiGunGuCategory;
-import com.intellij.terarosa.common.SidoCategory;
+import com.intellij.terarosa.common.category.RoleCategory;
+import com.intellij.terarosa.common.category.SiGunGuCategory;
+import com.intellij.terarosa.common.category.SidoCategory;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,13 +23,13 @@ public class User {
     private Long id;
 
     @Column(length = 16, nullable = false)
-    private String userId;
+    private String username;
 
-    @Column(length = 16, nullable = false)
-    private String userPw;
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
+    private String password;
 
     @Column(length = 8, nullable = false)
-    private String userName;
+    private String userNameKr;
 
     @Column(length = 11, nullable = false)
     private String userPhone;
@@ -44,20 +45,25 @@ public class User {
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String userAddr3;
 
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private RoleCategory roleCategory;
+
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createDate;
 
     @Builder
-    public User(Long id, String userId, String userPw, String userName, String userPhone,
-                SidoCategory userAddr1, SiGunGuCategory userAddr2, String userAddr3) {
+    public User(Long id, String username, String password, String userNameKr, String userPhone,
+                SidoCategory userAddr1, SiGunGuCategory userAddr2, String userAddr3, RoleCategory roleCategory) {
         this.id = id;
-        this.userId = userId;
-        this.userPw = userPw;
-        this.userName = userName;
+        this.username = username;
+        this.password = password;
+        this.userNameKr = userNameKr;
         this.userPhone = userPhone;
         this.userAddr1 = userAddr1;
         this.userAddr2 = userAddr2;
         this.userAddr3 = userAddr3;
+        this.roleCategory = roleCategory;
     }
 }

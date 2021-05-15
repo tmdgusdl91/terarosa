@@ -1,4 +1,7 @@
-package com.intellij.terarosa.common;
+package com.intellij.terarosa.common.category;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public enum SidoCategory {
     Seoul("서울특별시"),
@@ -23,5 +26,13 @@ public enum SidoCategory {
 
     SidoCategory(String name) {
         this.name = name;
+    }
+
+    public final static Map<String, String> getSidoCategory() {
+        Map<String, String> data = new LinkedHashMap<>();
+        for (int i = 0 ; i < SidoCategory.values().length ; i++) {
+            data.put(SidoCategory.values()[i].name(),SidoCategory.values()[i].name);
+        }
+        return data;
     }
 }
