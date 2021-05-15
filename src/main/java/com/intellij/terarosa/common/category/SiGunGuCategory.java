@@ -1,5 +1,8 @@
 package com.intellij.terarosa.common.category;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public enum SiGunGuCategory {
 
     Jonglo("종로구",SidoCategory.Seoul),
@@ -255,6 +258,16 @@ public enum SiGunGuCategory {
     SiGunGuCategory(String name, SidoCategory sidoCategory) {
         this.name = name;
         this.sidoCategory = sidoCategory;
+    }
+
+    public final static Map<String, String> getSiGunGuCategory(SidoCategory sido) {
+        Map<String, String> map = new LinkedHashMap<>();
+        for (int i = 0; i < SiGunGuCategory.values().length ; i++) {
+            if (SiGunGuCategory.values()[i].sidoCategory == sido) {
+                map.put(SiGunGuCategory.values()[i].name(), SiGunGuCategory.values()[i].name);
+            }
+        }
+        return map;
     }
 
 }

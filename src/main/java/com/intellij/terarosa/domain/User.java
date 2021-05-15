@@ -3,9 +3,7 @@ package com.intellij.terarosa.domain;
 import com.intellij.terarosa.common.category.RoleCategory;
 import com.intellij.terarosa.common.category.SiGunGuCategory;
 import com.intellij.terarosa.common.category.SidoCategory;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -13,7 +11,9 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @Entity
+@ToString
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class User {
@@ -52,6 +52,9 @@ public class User {
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createDate;
+
+    @Column
+    private Boolean enabled;
 
     @Builder
     public User(Long id, String username, String password, String userNameKr, String userPhone,
