@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang=ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>테라로사 커피</title>
+    <!--    <link href="<%=cp %>/terarosa/images/favicon_20131112112751.ico" rel="shortcut icon" type="images/x-icon">-->
+    <link rel="stylesheet" th:href="@{/css/reset.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <!-- js 맨위에 시작 -->
+    <script th:src="@{/js/jquery.js}"></script>
+    <script th:src="@{/js/main.js}"></script>
+</head>
+<body>
+<div>
+    <div id="wrap">
+        <header id="header">
+            <h1>
+                <a href="">
+                    <img th:src="@{/images/logo.png}" alt="terarosa"/>
+                </a>
+            </h1>
+            <div class="top-menu">
+                <ul>
+                    <div sec:authorize="hasRole('admin')">
+                        어드민
+                    </div>
+                    <div sec:authorize="hasRole('user')">
+                        사용자
+                    </div>
+                    <li sec:authorize="!isAuthenticated()"><a href="/account/login" method="get">로그인</a></li>
+                    <li sec:authorize="!isAuthenticated()"><a href="/account/signup" method="get">회원가입</a></li>
+                    <form name="logout" th:action="@{/logout}" method="POST">
+                        <li sec:authorize="isAuthenticated()"><a href="#"
+                                                                 onclick="javascript:document.logout.submit();">로그아웃</a>
+                        </li>
+                    </form>
+                    <!-- <li><span class="text-black mx-2" sec:authentication="name">사용자</span></li> -->
+                    <li><a href="#">주문/배송</a></li>
+                    <form name="product" th:action="@{/product/item}" method="GET">
+                        <li><input type="submit" value="상품등록"></li>
+                        <!--                            <li><a href="#" onclick="javascript:document.product.submit();">상품등록</a></li>-->
+                    </form>
+                    <li><a href="#">주문/배송</a></li>
+                    <li><a href="#">장바구니</a></li>
+                    <li><a href="#">문의</a></li>
+                </ul>
+            </div>
+            <nav id="nav">
+                <ul id="gnb">
+                    <li class="hover-me"><a class='hover-me' href="<%=cp %>/tera/shoplist.do">SHOP</a></li>
+                    <li class="hover-me2"><a class='hover-me2' href="<%=cp %>/tera/wholesale.do">WHOLESALE</a></li>
+                    <li class="hover-me3"><a class='hover-me3' href="<%=cp %>/tera/museum.do">MUSEUM</a></li>
+                </ul>
+            </nav>
+            <div class="side-menu">
+                <ul>
+                    <li class="hover-me4"><a class='hover-me4' href="<%=cp %>/tera/about.do">ABOUT</a></li>
+                    <li class="hover-me5"><a class='hover-me5' href="<%=cp %>/tera/times.do">TERA TIMES</a></li>
+                    <li class="hover-me6"><a class='hover-me6' href="<%=cp %>/tera/loc.do">LOCATIONS</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <div></div>
+
+
+
+
+<footer id="footer">
+    <div class="inner">
+        <ul class="f_menu">
+            <li><a href="<%=cp %>/tera/agreement.do">이용약관</a></li>
+            <li><a href="<%=cp %>/tera/privacy.do">개인정보처리방침</a></li>
+            <li><a href="https://pgweb.tosspayments.com/ms/escrow/s_escrowYn.do?mertid=CF_haksanshopp"
+                   onclick="window.open(this.href, 'mywin','left=20,top=20,width=500,height=550,toolbar=0,resizable=0'); return false;">
+                LG U+ 구매안전서비스 가입사실 확인
+            </a>
+            </li>
+        </ul>
+        <address>
+            <div class="add r1">
+                <h2>CUSTOMER CENTER</h2>
+                <strong><img th:src="@{/images/tel.png}"> 033-648-2760</strong>
+                <p>평일 09:00 ~ 18:00 점심 12:00 ~ 13:00</p>
+                <p>휴무 토/일/공휴일은 휴무</p>
+            </div>
+            <div class="add r2">
+                <h2>BANK INFO</h2>
+                <p><strong>신한은행</strong>
+                    100-025-724849</p>
+                <p><strong>예 금 주</strong>
+                    (주)학산</p>
+            </div>
+            <div class="add r3">
+                <p>
+                    <span>상호</span>(주)학산
+                    <span>대표이사</span>김용덕
+                    <span>주소</span>강원도 강릉시 구정면 현천길 25
+                    <span>통신판번호</span>제2003-강릉-0085호<br/>
+                    <span>계좌번호</span>신한은행 100-025-724849 (주)학산
+                    <span>사업자등록번호</span> 226-81-28273 [사업자정보확인]<br/>
+                    <span>개인정보보호책임자</span>김용덕
+                    <span>원두도매문의</span>070-4218-2760
+                    <span>매장이용문의</span>033-648-2760(내선1)<br/>
+                    <span>레스토랑문의</span>010-2361-2760
+                    <span>이메일</span>info@terarosa.com<br/>
+                    <em>2004-2020 TERAROSA COFFEE. ALL RIGHT RESERVED.</em><br/>
+                </p>
+                <p>
+                    <img th:src="@{/images/ifoot.gif}"/> <span>
+								<a href="https://www.instagram.com/terarosacoffee/" target="_blank">@terarosacoffee</a>
+
+								<a href="https://www.instagram.com/terarosakitchen/"
+                                   target="_blank">@terarosakitchen</a>
+							</span>
+                </p>
+            </div>
+        </address>
+    </div>
+</footer>
+
+</div>
+</div>
+</body>
+</html>
