@@ -71,6 +71,7 @@ text-decoration:none; border-bottom:3px solid #df3535; padding-bottom:3px;}
 .con1 h2 { text-align: center; font-size: 33px; font-weight: 600; padding-top: 80px; }
 .con1 span { font-size: 12px; display: block; text-align: right; font-weight: 600; padding-bottom: 25px; }
 .con1 span a {color: #d02d28;}
+.con1 ul li img { width: 399.95px; height:279.967px; margin-top: -17px; }
 .con1 ul { }
 .con1 ul li { width: 400px; height: 450px; float: left; background-position: 0 0; background-repeat: no-repeat; margin-right: 15px; }
 .con1 ul li:nth-child(3) { margin-right: 0px; }

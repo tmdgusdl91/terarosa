@@ -20,6 +20,7 @@ public class ProductDto {
     private String imgpath;
     private int count;
     private LocalDateTime createDate;
+    private String[] imgList;
 
     public Product toEntity() {
         Product product = Product.builder()

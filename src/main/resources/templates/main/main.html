@@ -81,20 +81,15 @@
                     <div class="inner">
                         <h2>BEST</h2>
                         <span><a href="<%=cp %>/tera/shoplist.do">+ SHOP</a></span>
-                        <ul>
-<!--                        	<c:forEach var="dto" items="${lists }" >-->
-<!--                        	-->
-<!--                            <li>-->
-<!--                            <a href="<%=cp%>/tera/shoparticle.do?seno=${dto.seno}">-->
-<!--                                <img src="${imagePath }/${dto.saveFileName }">-->
-<!--                                <h3>${dto.item_name_kor}</h3>-->
-<!--                                <em>${dto.item_name_eng}</em>-->
-<!--                                <p>${dto.item_info }<br>-->
-<!--                                <strong>${dto.item_price } </strong>-->
-<!--                             </a>-->
-<!--                            </li>-->
-<!--                           -->
-<!--                             </c:forEach>-->
+                        <ul th:each="dto: ${bestList}">                       	
+                           <li>
+                           <a href="#">
+                               <img th:src="@{'data:image/jpeg;base64,'+${dto.imgList[0]}}"/>
+                               <strong th:text="${dto.price}+'원'"></strong>
+                               <h3 th:text="${dto.name}"></h3>
+                               <p th:text="${dto.info}"><br>                               
+                            </a>
+                           </li>
                         </ul>
                     </div>
                 </div>
@@ -102,20 +97,15 @@
                     <div class="inner">
                         <h2>NEW</h2>
                         <span><a href="<%=cp %>/tera/shoplist.do">+ SHOP</a></span>
-                        <ul>
-<!--                            <c:forEach var="dto" items="${lists2 }" >-->
-<!--                            -->
-<!--                            <li>-->
-<!--                            <a href="<%=cp%>/tera/shoparticle.do?seno=${dto.seno}">-->
-<!--                                <img src="${imagePath2 }/${dto.saveFileName }">-->
-<!--                                <h3>${dto.item_name_kor}</h3>-->
-<!--                                <em>${dto.item_name_eng}</em>-->
-<!--                                <p>${dto.item_info }<br>-->
-<!--                                <strong>${dto.item_price } </strong>-->
-<!--                            </a>-->
-<!--                            </li>-->
-<!--                           -->
-<!--                             </c:forEach>-->
+                        <ul th:each="dto: ${newList}">                       	
+                           <li>
+                           <a href="#">
+                               <img th:src="@{'data:image/jpeg;base64,'+${dto.imgList[0]}}"/>
+                               <strong th:text="${dto.price}+'원'"></strong>
+                               <h3 th:text="${dto.name}"></h3>
+                               <p th:text="${dto.info}"><br>                               
+                            </a>
+                           </li>
                         </ul>
                     </div>
                 </div>
