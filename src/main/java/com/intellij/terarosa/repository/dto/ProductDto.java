@@ -2,6 +2,7 @@ package com.intellij.terarosa.repository.dto;
 
 import com.intellij.terarosa.domain.Product;
 import lombok.*;
+import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
@@ -35,10 +36,15 @@ public class ProductDto {
     }
 
     @Builder
-    public ProductDto (String name, String category, String price, String info) {
+    public ProductDto (Long id, String name, String category, String price, String info,
+                        String imgpath, int count, LocalDateTime createDate) {
+        this.id = id;
         this.name = name;
         this.category = category;
         this.price = BigInteger.valueOf(Long.parseLong(price));
         this.info = info;
+        this.imgpath = imgpath;
+        this.count = count;
+        this.createDate = createDate;
     }
 }

@@ -31,12 +31,8 @@ public class ItemRegistrationController {
         try {
             productService.itemRegi(productDto);
             productService.uploadAttachment(sourceFile);
-
-
         } catch (Exception e) {
-
         }
-
         return "redirect:/";
     }
 
