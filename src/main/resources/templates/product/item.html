@@ -47,7 +47,7 @@
 
 
       <div class="col-md-7 col-lg-8">
-        <form name="register" th:action="@{/product/item}" method="post">
+        <form name="register" th:action="@{/product/item}" method="post" enctype = "multipart/form-data">
           <div class="row g-3">
             <div class="col-sm-6">
               <label class="form-label">Product name</label>
@@ -71,7 +71,7 @@
               <label class="form-label">Product Information <span class="text-muted">(Optional)</span></label>
               <textarea th:name="info" id="info"></textarea>
             </div>
-
+              <input type="file" th:name="sourceFile" id="sourceFile" multiple="multiple">
 
 
           <button class="w-100 btn btn-primary btn-lg" type="submit">register</button>
@@ -85,7 +85,5 @@
 
 
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
-<script src="itemRegister.js"></script>
 </body>
 </html>

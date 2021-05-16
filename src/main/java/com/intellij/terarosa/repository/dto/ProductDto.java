@@ -1,9 +1,6 @@
 package com.intellij.terarosa.repository.dto;
 
-import com.intellij.terarosa.common.category.SiGunGuCategory;
-import com.intellij.terarosa.common.category.SidoCategory;
 import com.intellij.terarosa.domain.Product;
-import com.intellij.terarosa.domain.User;
 import lombok.*;
 
 import java.math.BigInteger;
@@ -31,6 +28,7 @@ public class ProductDto {
                 .category(category)
                 .price(price)
                 .info(info)
+                .imgpath(imgpath)
                 .build();
         return product;
     }
