@@ -35,7 +35,7 @@ public class Product {
     @Column(columnDefinition = "LONGTEXT")
     private String info;
 
-    @Column(length = 100)
+    @Column
     private String imgpath;
 
     @Column(columnDefinition = "integer default 0")
