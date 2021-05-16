@@ -74,4 +74,22 @@ public class UserController {
                     .build();
         }
     }
+
+    @GetMapping("/{id}")
+    @ResponseBody
+    public Response checkId(@PathVariable("id") String id) {
+        try {
+            return Response.builder()
+                    .success(true)
+                    .message("")
+                    .data(userService.checkId(id))
+                    .build();
+        } catch (Exception e) {
+            return Response.builder()
+                    .success(false)
+                    .message(e.toString())
+                    .data(null)
+                    .build();
+        }
+    }
 }

@@ -25,7 +25,21 @@ public class UserService {
             user.setEnabled(true);
             userRepository.save(user);
         } catch (Exception e) {
-            log.error("error ::::::: " + e.toString());
+            throw new Exception();
+        }
+    }
+
+    @Transactional
+    public boolean checkId(String username) throws Exception {
+        try {
+            int check = userRepository.countByUsername(username);
+            log.trace("check ::: " + check);
+            if(check == 1) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (Exception e) {
             throw new Exception();
         }
     }

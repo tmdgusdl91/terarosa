@@ -41,7 +41,7 @@
         <div class="form-floating">
             <label for="username">Your Login ID</label>
             <input type="text" class="form-control" id="username" name="username" placeholder="Login ID" autofocus>
-            <input class="w-50 btn btn-lg btn-primary" type="button" value="중복확인"/>
+            <input class="w-50 btn btn-lg btn-primary" type="button" value="중복확인" onclick="checkId();"/>
         </div>
 
         <div class="form-floating">
@@ -87,7 +87,8 @@
 
 </body>
 
-<script>  
+<script>
+    let flag = false;
     $.ajax({
         type: 'GET',
         url:'/account/addr/main',
@@ -128,10 +129,36 @@
     })
 </script>
 <script>
-function onlyNumber(){
-        if((event.keyCode<48)||(event.keyCode>57))
-          event.returnValue=false;
-    }
+    function onlyNumber(){
+            if((event.keyCode<48)||(event.keyCode>57))
+            event.returnValue=false;
+        }
+   
+   function checkId() {
+        const id = document.getElementById("username").value;
+        
+        $.ajax({
+            type: 'GET',
+            url:'/account/'+id,
+            dataType : 'json',
+            async: true, //동기, 비동기 여부
+            cache :false, // 캐시 여부
+            success: function(result){   
+                if (result.data === true) { //아이디가 없을때
+                    if(confirm("중복되는 아이디가 없습니다. 사용하시겠습니까 ?")) {
+                        flag = true;
+                        $("#username").attr("readonly",true);
+                    }
+                } else { //중복되는 아이디가 있을때
+                    alert("아이디가 중복되었습니다.");
+                }
+            },
+            error:function(xhr,status,error){
+                console.log('error:'+error);
+            }
+        });
+
+   }
 
 </script>
 </html>
