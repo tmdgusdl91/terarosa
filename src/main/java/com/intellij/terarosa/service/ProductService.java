@@ -57,7 +57,7 @@ public class ProductService {
         return "redirect:/";
     }
 
-    public List<ProductDto> getList(String value) throws IOException {
+    public List<ProductDto> getList(String value) {
         List<Product> productList =  productRepository.findListOrderBy(value);
         List<ProductDto> productDtoList = new ArrayList<>();
         for (Product list : productList) {
@@ -67,22 +67,11 @@ public class ProductService {
                     .category(list.getCategory())
                     .price(String.valueOf(list.getPrice()))
                     .info(list.getInfo())
-                    .imgList(getBase64List(list.getImgpath()))
+                    .imgpath(list.getImgpath())
                     .build();
+            dto.setImgList(dto.getBase64List());
             productDtoList.add(dto);
         }
         return productDtoList;
-    }
-
-    public String[] getBase64List(String path) throws IOException {
-        File dir = new File(path);
-        File[] fileList = dir.listFiles();
-        String[] list = new String[fileList.length];
-        for (int i = 0; i < list.length ; i++) {
-            byte[] fileByte = FileUtils.readFileToByteArray(fileList[i]);
-            String encodedString = Base64.getEncoder().encodeToString(fileByte);
-            list[i] = encodedString;
-        }
-        return list;
     }
 }

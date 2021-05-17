@@ -15,7 +15,7 @@ public class ProductDetailService {
     private final ProductRepository productRepository;
     private final ProductService productService;
     @Transactional
-    public ProductDto getProductDetail(Long id) throws Exception {
+    public ProductDto getProductDetail(Long id) {
         Product product = productRepository.findById(id).get();
 
         ProductDto productDto = ProductDto.builder()
@@ -24,10 +24,11 @@ public class ProductDetailService {
                 .category(product.getCategory())
                 .price(product.getPrice().toString())
                 .info(product.getInfo())
-                .imgList(productService.getBase64List(product.getImgpath()))
+                .imgpath(product.getImgpath())
                 .count(product.getCount())
                 .createDate(product.getCreateDate())
                 .build();
+        productDto.setImgList(productDto.getBase64List());
         return productDto;
 
     }

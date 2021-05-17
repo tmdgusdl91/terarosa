@@ -2,15 +2,21 @@ package com.intellij.terarosa.repository.dto;
 
 import com.intellij.terarosa.domain.Product;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.Base64;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
+@Slf4j
 public class ProductDto {
 
     private Long id;
@@ -47,5 +53,22 @@ public class ProductDto {
         this.count = count;
         this.createDate = createDate;
         this.imgList = imgList;
+    }
+
+
+    public String[] getBase64List() {
+        try {
+            File dir = new File(this.imgpath);
+            File[] fileList = dir.listFiles();
+            String[] list = new String[fileList.length];
+            for (int i = 0; i < list.length; i++) {
+                byte[] fileByte = FileUtils.readFileToByteArray(fileList[i]);
+                String encodedString = Base64.getEncoder().encodeToString(fileByte);
+                list[i] = encodedString;
+            }
+            return list;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

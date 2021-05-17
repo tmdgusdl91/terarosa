@@ -1,23 +1,26 @@
 package com.intellij.terarosa.domain;
 
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import org.apache.commons.io.FileUtils;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.Base64;
 
 @Getter
 @Setter
 @Entity
+@ToString
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Product {
+public class Product  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,5 +57,4 @@ public class Product {
         this.info = info;
         this.imgpath = imgpath;
     }
-
 }

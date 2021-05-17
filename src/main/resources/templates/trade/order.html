@@ -10,6 +10,22 @@
     <!-- js 맨위에 시작 -->
 <script th:src="@{/js/jquery.js}"></script>
 <script th:src="@{/js/main.js}"></script>
+<link href="carousel.css" rel="stylesheet">
+<style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
     <div id="wrap">
@@ -38,7 +54,7 @@
                                 <li><input type="submit" value="상품등록"></li>
 <!--                            <li><a href="#" onclick="javascript:document.product.submit();">상품등록</a></li>-->
                         </form>
-                        <li><a href="/trade/list">주문/배송</a></li>
+                        <li><a href="#">주문/배송</a></li>
                         <li><a href="#">장바구니</a></li>
                         <li><a href="#">문의</a></li>
                     </ul>
@@ -58,78 +74,19 @@
                 </ul>
             </div>
         </header>
-
-        <section id="main-visual">
-            <div class="inner">
-                <ul class="visual">
-					<li><a href="<%=cp%>/tera/shoplist.do"><img th:src="@{/images/main01.jpg}" alt="main01"/></a></li>
-					<li><a href="<%=cp%>/tera/shoplist.do"><img th:src="@{/images/main02.jpg}" alt="main02"/></a></li>
-					<li><a href="<%=cp%>/tera/shoplist.do"><img th:src="@{/images/main03.jpg}" alt="main03"/></a></li>
-					<li><a href="<%=cp%>/tera/shoplist.do"><img th:src="@{/images/main04.jpg}" alt="main04"/></a></li>
-					<li><a href="<%=cp%>/tera/shoplist.do"><img th:src="@{/images/main05.jpg}" alt="main05"/></a></li>
-                </ul>
-                <ul class="btn-wrap">
-                    <li class="btn prev"><i class="xi-angle-left" ></i></li>
-                    <li class="btn next" onclick="toggleImg();"><i class="xi-angle-right"></i></li> 
-                </ul>
+        <div class="container marketing" th:each="dto : ${list}">
+            <!-- START THE FEATURETTES -->
+            <div class="row featurette">
+                <div class="col-md-5">
+                    <a th:href="@{'/product/productdetail/'+${dto.productDto.id}}"><img th:src="@{'data:image/jpeg;base64,'+${dto.productDto.imgList[0]}}" alt="img" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"></a>
+                </div>
             </div>
-        </section>
-        
-        <div id="container">
-            <section id="content">
-                <div class="con1">
-                    <div class="inner">
-                        <h2>BEST</h2>
-                        <span><a href="<%=cp %>/tera/shoplist.do">+ SHOP</a></span>
-                        <ul th:each="dto: ${bestList}">                       	
-                           <li>
-                           <a href="#">
-                               <img th:src="@{'data:image/jpeg;base64,'+${dto.imgList[0]}}"/>
-                               <strong th:text="${dto.price}+'원'"></strong>
-                               <h3 th:text="${dto.name}"></h3>
-                               <p th:text="${dto.info}"><br>                               
-                            </a>
-                           </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="con2">
-                    <div class="inner">
-                        <h2>NEW</h2>
-                        <span><a href="<%=cp %>/tera/shoplist.do">+ SHOP</a></span>
-                        <ul th:each="dto: ${newList}">                       	
-                           <li>
-                           <a href="#">
-                               <img th:src="@{'data:image/jpeg;base64,'+${dto.imgList[0]}}"/>
-                               <strong th:text="${dto.price}+'원'"></strong>
-                               <h3 th:text="${dto.name}"></h3>
-                               <p th:text="${dto.info}"><br>                               
-                            </a>
-                           </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="con3">
-                    <div class="inner">
-                        <a href="<%=cp %>/tera/wholesale.do"><img th:src="@{/images/c31.jpg}" alt="c31" style="padding-top: 100px;"/></a>
-                        <ul>
-                            <li><a href="<%=cp %>/tera/coffee.do"><img th:src="@{/images/c32.jpg}" alt="c32"/></a></li>
-                            <li><a href="<%=cp %>/tera/regular.do"><img th:src="@{/images/c33.jpg}" alt="c33" /></a></li>
-                            <li><a href="<%=cp %>/tera/food.do"><img th:src="@{/images/c34.jpg}" alt="c34" /></a></li>
-                            <li><a href="<%=cp %>/tera/coffee.do"><img th:src="@{/images/c35.jpg}" alt="c35" /></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="con4">
-                    <div class="inner">
-                        <ul>
-                            <li><a href="<%=cp %>/tera/loc.do"><img th:src="@{/images/c41.jpg}" alt="c41"/></a></li>
-                          	<li><a href="<%=cp %>/tera/about.do"><img th:src="@{/images/c42.jpg}" alt="c42"/></a></li>
-                            <li><a href="<%=cp %>/tera/times.do"><img th:src="@{/images/c43.jpg}" alt="c43"/></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+            <div class="col-md-7">
+                <a th:href="@{'/product/productdetail/'+${dto.productDto.id}}"><h2 class="featurette-heading" th:text="${dto.productDto.name}">제품이름</h2></a><span class="text-muted" th:text="${dto.productDto.category}">카테고리</span>
+                <p class="lead" th:text="${dto.productDto.info}">제품설명</p>
+                <p class="lead" th:text="${dto.count}">제품수량 </p><p class="lead" th:text="${dto.price}">총금액</p>
+            </div>  
+            <hr class="featurette-divider">
         </div>
         
      <footer id="footer">
