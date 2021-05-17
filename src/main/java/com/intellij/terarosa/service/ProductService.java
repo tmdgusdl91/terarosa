@@ -61,18 +61,20 @@ public class ProductService {
         List<Product> productList =  productRepository.findListOrderBy(value);
         List<ProductDto> productDtoList = new ArrayList<>();
         for (Product list : productList) {
-            ProductDto dto = new ProductDto();
-            dto.setId(list.getId());
-            dto.setName(list.getName());
-            dto.setInfo(list.getInfo());
-            dto.setPrice(list.getPrice());
-            dto.setImgList(getBase64List(list.getImgpath()));
+            ProductDto dto = ProductDto.builder()
+                    .id(list.getId())
+                    .name(list.getName())
+                    .category(list.getCategory())
+                    .price(String.valueOf(list.getPrice()))
+                    .info(list.getInfo())
+                    .imgList(getBase64List(list.getImgpath()))
+                    .build();
             productDtoList.add(dto);
         }
         return productDtoList;
     }
 
-    private String[] getBase64List(String path) throws IOException {
+    public String[] getBase64List(String path) throws IOException {
         File dir = new File(path);
         File[] fileList = dir.listFiles();
         String[] list = new String[fileList.length];

@@ -13,7 +13,7 @@ import java.math.BigInteger;
 @AllArgsConstructor
 public class ProductDetailService {
     private final ProductRepository productRepository;
-
+    private final ProductService productService;
     @Transactional
     public ProductDto getProductDetail(Long id) throws Exception {
         Product product = productRepository.findById(id).get();
@@ -24,11 +24,10 @@ public class ProductDetailService {
                 .category(product.getCategory())
                 .price(product.getPrice().toString())
                 .info(product.getInfo())
-                .imgpath(product.getImgpath())
+                .imgList(productService.getBase64List(product.getImgpath()))
                 .count(product.getCount())
                 .createDate(product.getCreateDate())
                 .build();
-
         return productDto;
 
     }

@@ -20,7 +20,6 @@ import java.io.File;
 public class ItemRegistrationController {
 
     private final ProductService productService;
-    private final ProductRepository productRepository;
 
     @GetMapping("/item")
     public String itemRegiPage() { return "/product/item"; }
@@ -35,9 +34,4 @@ public class ItemRegistrationController {
         }
         return "redirect:/";
     }
-
-
-
-
-
 }

@@ -2,9 +2,7 @@ package com.intellij.terarosa.repository;
 
 import com.intellij.terarosa.domain.Product;
 import com.intellij.terarosa.domain.QProduct;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
-import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
 
@@ -33,17 +31,19 @@ public class ProductCustomRepositoryImpl extends QuerydslRepositorySupport imple
     public List<Product> findListOrderBy(String value) {
         JPAQuery<Product> query = new JPAQuery<>(entityManager);
         query.select(product).from(product);
-        switch (value) {
-            case "create_date":
-                query.orderBy(product.createDate.desc());
-                query.limit(4);
-                break;
-            case "count":
-                query.orderBy(product.count.desc());
-                query.limit(3);
-                break;
-            default :
-                break;
+        if (value != null) {
+            switch (value) {
+                case "create_date":
+                    query.orderBy(product.createDate.desc());
+                    query.limit(4);
+                    break;
+                case "count":
+                    query.orderBy(product.count.desc());
+                    query.limit(3);
+                    break;
+                default:
+                    break;
+            }
         }
         return query.fetch();
     }

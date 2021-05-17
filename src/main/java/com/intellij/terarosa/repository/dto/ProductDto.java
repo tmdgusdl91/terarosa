@@ -37,7 +37,7 @@ public class ProductDto {
 
     @Builder
     public ProductDto (Long id, String name, String category, String price, String info,
-                        String imgpath, int count, LocalDateTime createDate) {
+                        String imgpath, int count, LocalDateTime createDate, String[] imgList) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -46,5 +46,6 @@ public class ProductDto {
         this.imgpath = imgpath;
         this.count = count;
         this.createDate = createDate;
+        this.imgList = imgList;
     }
 }

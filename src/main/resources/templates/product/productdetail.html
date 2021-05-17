@@ -10,6 +10,10 @@
     <!-- js 맨위에 시작 -->
     <script th:src="@{/js/jquery.js}"></script>
     <script th:src="@{/js/main.js}"></script>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 </head>
 <body>
 <div>
@@ -62,7 +66,49 @@
             </div>
         </header>
 
-        <div></div>
+        <form th:action="@{'/trade/buy/'+${post.id}}" method="get">
+            <div align="center">
+                <table style="text-align: center">
+                        <div class="post-wrapper">
+                            <div class="post-wrapper" th:each="img: ${post.imgList}">
+                                <img th:src="@{'data:image/jpeg;base64,'+${img}}"/>
+                            </div>
+                        </div>
+                        <br/><br/><br/>
+                        <tbody>                        
+                            <tr>
+                                <th scope="row"><span style="font-size:16px;color:#555555;">상품명</span></th>
+                                <td><span style="font-size:16px;color:#555555;" th:text="${post.name}">5월 킹콩  르완다 호베</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><span style="font-size:12px;color:#008BCC;font-weight:bold;">판매가</span></th>
+                                <td><span id="product_count" style="font-size:12px;color:#008BCC;font-weight:bold;" th:text="${post.price}"><strong id="span_product_price_text"> </strong><input id="product_price" name="product_price" value="" type="hidden"  /></span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><span style="font-size:12px;color:#555555;">수량</span></th>
+                                <td><input type="number" id="count" name="count" min="1" max="255" onchange="setTotalPrice();" value="1"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><span style="font-size:12px;color:#555555;">모델</span></th>
+                                <td><span style="font-size:12px;color:#555555;" th:text="${post.name}">5월 킹콩  르완다 호베</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><span style="font-size:12px;color:#555555;">상품간략설명</span></th>
+                                <td><span style="font-size:12px;color:#555555;" th:text="${post.info}"><p>크랜베리, 살구, 바닐라, 브라운 슈거, 시트러스<br></p>
+                            </tr>
+                        </tbody>
+                </table>
+                <table style="text-align: center">
+                    <tbody>
+                        <tr>
+                            <th scope="row"><span style="font-size:12px;color:#008BCC;font-weight:bold;">총 가격</span></th>
+                            <td><span style="font-size:12px;color:#008BCC;font-weight:bold;" id="totalPrice"><strong id="span_product_price_text"></strong></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">구매하기</button>
+            </div>
+        </form>
 
 
 
@@ -123,4 +169,29 @@
 </div>
 </div>
 </body>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function setTotalPrice() {
+        const price = [[${post.price}]];
+        const count = document.getElementById("count").value;
+        document.getElementById('totalPrice').innerHTML = price * count;
+    }
+     /*]]>*/
+</script>
+
+<script>
+
+
+
+$('.post-wrapper').slick({
+  dots: true,
+  infinite: true,
+  speed: 500,
+  fade: true,
+  cssEase: 'linear'
+});
+
+</script>
+
 </html>
