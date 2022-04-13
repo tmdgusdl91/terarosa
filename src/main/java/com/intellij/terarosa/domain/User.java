@@ -13,10 +13,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "USER")
 @ToString
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 public class User implements Serializable {
 
     @Id

@@ -24,7 +24,6 @@ public class MainPageController implements WebMvcConfigurer {
 
     @GetMapping("/image/{img}")
     public String main1(@PathVariable("img") String img) {
-        System.out.println("img ::::: " + img);
         return null;
     }
 }

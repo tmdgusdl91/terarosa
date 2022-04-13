@@ -43,7 +43,6 @@ public class OrderProductDto {
         this.price = price;
 
         if (product != null) {
-            System.out.println("!!!!" + product.toString());
             this.productDto = ProductDto.builder()
                     .id(product.getId())
                     .name(product.getName())

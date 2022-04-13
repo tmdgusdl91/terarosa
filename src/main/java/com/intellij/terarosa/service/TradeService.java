@@ -42,7 +42,6 @@ public class TradeService {
         List<OrderProduct> list = orderProductRepository.findAllByUsername(username);
         List<OrderProductDto> dtoList = new ArrayList<>();
         for (OrderProduct dto : list) {
-            log.trace("OrderProduct DTO :::::" + dto.toString());
             OrderProductDto orderDto = OrderProductDto.builder()
                     .id(dto.getId())
                     .username(dto.getUsername())

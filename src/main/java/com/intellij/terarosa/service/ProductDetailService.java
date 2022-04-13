@@ -1,5 +1,6 @@
 package com.intellij.terarosa.service;
 
+import com.fasterxml.jackson.databind.cfg.MapperBuilder;
 import com.intellij.terarosa.domain.Product;
 import com.intellij.terarosa.repository.ProductRepository;
 import com.intellij.terarosa.repository.dto.ProductDto;
@@ -12,8 +13,10 @@ import java.math.BigInteger;
 @Service
 @AllArgsConstructor
 public class ProductDetailService {
+
     private final ProductRepository productRepository;
     private final ProductService productService;
+
     @Transactional
     public ProductDto getProductDetail(Long id) {
         Product product = productRepository.findById(id).get();
@@ -29,8 +32,8 @@ public class ProductDetailService {
                 .createDate(product.getCreateDate())
                 .build();
         productDto.setImgList(productDto.getBase64List());
-        return productDto;
 
+        return productDto;
     }
 
 }

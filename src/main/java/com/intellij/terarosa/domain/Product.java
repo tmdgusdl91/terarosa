@@ -16,10 +16,8 @@ import java.util.Base64;
 
 @Getter
 @Setter
-@Entity
-@ToString
+@Entity(name = "PRODUCT")
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 public class Product  implements Serializable {
 
     @Id

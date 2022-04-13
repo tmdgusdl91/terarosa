@@ -9,10 +9,9 @@ import java.math.BigInteger;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "ORDER_PRODUCT")
 @ToString
 @NoArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
 public class OrderProduct implements Serializable {
 
     @Id

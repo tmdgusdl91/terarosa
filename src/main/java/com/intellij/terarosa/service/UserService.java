@@ -33,7 +33,6 @@ public class UserService {
     public boolean checkId(String username) throws Exception {
         try {
             int check = userRepository.countByUsername(username);
-            log.trace("check ::: " + check);
             if(check == 1) {
                 return false;
             } else {

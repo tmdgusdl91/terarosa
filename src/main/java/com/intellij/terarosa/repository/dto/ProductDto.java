@@ -55,7 +55,6 @@ public class ProductDto {
         this.imgList = imgList;
     }
 
-
     public String[] getBase64List() {
         try {
             File dir = new File(this.imgpath);

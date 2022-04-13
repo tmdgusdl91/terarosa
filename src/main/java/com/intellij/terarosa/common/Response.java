@@ -3,7 +3,7 @@ package com.intellij.terarosa.common;
 
 import lombok.*;
 
-@Data
+@Setter
 @NoArgsConstructor
 @ToString
 public class Response<T> {
